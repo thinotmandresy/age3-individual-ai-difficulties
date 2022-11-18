@@ -26,12 +26,37 @@ int getPlayerDifficulty(int player) {
     return difficulty >= 0 ? difficulty : aiGetWorldDifficulty();
 }
 
+const char* getWorldDifficultyName(int difficulty) {
+    switch(difficulty)
+    {
+        case 0: return "Level 0 (sandbox)";
+        case 1: return "Level 1 (easy)";
+        case 2: return "Level 2 (moderate)";
+        case 3: return "Level 3 (hard)";
+        case 4: return "Level 5 (expert)";
+    }
+
+    char digits[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    char difficulty_name[255] = "Level ";
+    char r_difficulty_level[10] = "";
+
+    do {
+        r_difficulty_level[strlen(r_difficulty_level)] = digits[difficulty % 10];
+        difficulty /= 10;
+    } while(difficulty);
+
+    for(auto i = strlen(r_difficulty_level) - 1; i >= 0; i--) {
+        difficulty_name[strlen(difficulty_name)] = r_difficulty_level[i];
+    }
+
+    difficulty_name[strlen(difficulty_name)] = '\0';
+
+    return difficulty_name;
+}
+
 void CHEATCALL PLVL(void* playerData) {
     bool(*const kbIsPlayerValid)(int) = reinterpret_cast<bool(*)(int)>(0x88537b);
     bool(*const kbIsPlayerHuman)(int) = reinterpret_cast<bool(*)(int)>(0x883aec);
-    
-    const char*(*const aiGetWorldDifficultyName)(int) = 
-        reinterpret_cast<const char*(*)(int)>(0x725b88);
     
     void(*const trChatSend)(int, const char*) = 
         reinterpret_cast<void(*)(int, const char*)>(0x984019);
@@ -39,7 +64,7 @@ void CHEATCALL PLVL(void* playerData) {
     const char*(*const kbGetPlayerName)(int) =
         reinterpret_cast<const char*(*)(int)>(0x883999);
     
-    for(auto i = 0; i < cMaxNumPlayers; i++) {
+    for(auto i = 1; i < cMaxNumPlayers; i++) {
         if (kbIsPlayerValid(i) == false)
             continue;
         
@@ -50,7 +75,7 @@ void CHEATCALL PLVL(void* playerData) {
 
         strcat_s(message, 255, kbGetPlayerName(i));
         strcat_s(message, 255, ": ");
-        strcat_s(message, 255, aiGetWorldDifficultyName(getPlayerDifficulty(i)));
+        strcat_s(message, 255, getWorldDifficultyName(getPlayerDifficulty(i)));
         
         trChatSend(0, message);
     }
