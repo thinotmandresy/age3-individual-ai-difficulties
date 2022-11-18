@@ -78,9 +78,9 @@ extern "C" _declspec(dllexport) int UHCPluginMain(UHCPluginInfo* pluginInfo) {
                                                          &cDefaultIntValue);
 
     UHCSyscall& sGetPlayerDifficulty =
-        pluginInfo->RegisterSyscall(GroupUI,
+        pluginInfo->RegisterSyscall(GroupAI,
                                     SyscallInteger,
-                                    "getPlayerDifficulty",
+                                    "aiGetPlayerDifficulty",
                                     getPlayerDifficulty,
                                     1,
                                     "");
