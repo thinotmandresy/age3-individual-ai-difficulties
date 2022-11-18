@@ -199,7 +199,7 @@
 			</gadget>
 			<gadget name="mainGameMenuRecGame-Quit" type="stateButton" size1024="878 51 1022 77" z="10" statebuttonuseinternalstates="" textfont="SmallButtonFont" textfontsize="10" textcolor="255 255 255" texturecoords="0 0 0.826771653543307 0.67741935483871" textcenterhoriz="">
 				$$42323$$Quit
-				<command>gadgetUnReal("mainGameMenuRecGame") leaveGame</command>
+				<command>clearPlayerDifficulties() gadgetUnReal("mainGameMenuRecGame") leaveGame</command>
 				<stateentry background="ui\ingame\button"/>
 				<stateentry background="ui\ingame\button_clicked"/>
 				<stateentry background="ui\ingame\button_rollover"/>
@@ -367,7 +367,7 @@
 			</gadget>
 			<gadget name="postGameMenu-QuitGame" type="stateButton" size1024="878 104 1022 130" z="10" statebuttonuseinternalstates="" textfont="SmallButtonFont" textfontsize="10" textcolor="255 255 255" texturecoords="0 0 0.826771653543307 0.67741935483871" textcenterhoriz="">
 				$$42323$$Quit
-				<command>gadgetUnReal("postGameMenu") leaveGame</command>
+				<command>clearPlayerDifficulties() gadgetUnReal("postGameMenu") leaveGame</command>
 				<stateentry background="ui\ingame\button"/>
 				<stateentry background="ui\ingame\button_clicked"/>
 				<stateentry background="ui\ingame\button_rollover"/>
@@ -718,7 +718,7 @@
 		<gadget name="ConfirmLeave-text" type="formatText" textcenterhoriz="" textcolor="3 0 88" textfont="IngameDialogs" textfontsize="16" size1024="343 257 691 327">$$18722$$Are you sure you want to resign?</gadget>
 		<gadget name="ConfirmLeave-YesButton" type="stateButton" textfont="IngameButtons" textfontsize="18" textcolor="3 0 88" foreground="UI\button_Greek" bevelbutton="" statebuttonuseinternalstates="" size1024="380 348 508 380">
 			$$18451$$Yes
-			<command>gadgetUnreal("ConfirmLeave") gadgetUnreal("mainGameMenu") handlePostGame</command>
+			<command>clearPlayerDifficulties() gadgetUnreal("ConfirmLeave") gadgetUnreal("mainGameMenu") handlePostGame</command>
 			<stateentry background="ui\core_ui\button_128x32_normal"/>
 			<stateentry background="ui\core_ui\button_128x32_clicked"/>
 			<stateentry background="ui\core_ui\button_128x32_rollover"/>
@@ -745,7 +745,7 @@
 		<gadget name="ConfirmResign-text" type="formatText" textcenterhoriz="" textcentervert="" textcolor="255 255 255" textfont="IngameDialogs" textfontsize="16" size1024="356 249 677 319">$$18722$$Are you sure you want to resign?</gadget>
 		<gadget name="ConfirmResign-YesButton" type="stateButton" textfont="IngameButtons" textfontsize="18" textcolor="255 255 255" foreground="UI\button_Greek" bevelbutton="" statebuttonuseinternalstates="" size1024="375 366 503 398">
 			$$18451$$Yes
-			<command>gadgetUnReal("mainGameMenu") gadgetUnReal("ConfirmResign") playerResign</command>
+			<command>clearPlayerDifficulties() gadgetUnReal("mainGameMenu") gadgetUnReal("ConfirmResign") playerResign</command>
 			<stateentry background="ui\core_ui\button_med_normal"/>
 			<stateentry background="ui\core_ui\button_med_clicked"/>
 			<stateentry background="ui\core_ui\button_med_high"/>
@@ -889,7 +889,7 @@
 		<gadget name="ConfirmResign-SinglePlayer-text" type="formatText" textcenterhoriz="" textcentervert="" textcolor="255 255 255" textfont="IngameDialogs" textfontsize="16" size1024="356 249 677 319">$$18722$$Are you sure you want to resign?</gadget>
 		<gadget name="ConfirmResign-SinglePlayer-YesButton" type="stateButton" textfont="IngameButtons" textfontsize="18" textcolor="255 255 255" foreground="UI\button_Greek" bevelbutton="" statebuttonuseinternalstates="" size1024="375 366 503 398">
 			$$18451$$Yes
-			<command>gadgetUnReal("mainGameMenu") gadgetUnReal("ConfirmResign-SinglePlayer") playerResign</command>
+			<command>clearPlayerDifficulties() gadgetUnReal("mainGameMenu") gadgetUnReal("ConfirmResign-SinglePlayer") playerResign</command>
 			<stateentry background="ui\core_ui\button_med_normal"/>
 			<stateentry background="ui\core_ui\button_med_clicked"/>
 			<stateentry background="ui\core_ui\button_med_high"/>

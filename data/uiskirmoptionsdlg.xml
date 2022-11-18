@@ -67,6 +67,7 @@
 			</gadget>
 			<gadget name="SkirmHCOptions_PlayButton" type="stateButton" bevelbutton="" statebuttonuseinternalstates="" textfont="PregameButtons" textfontsize="18" textcolor="255 255 255" textcenterhoriz="" textcentervert="" size1024="32 716 160 748" z="12" mouseovertext="$$42143$$" texturecoords="0 0 0.627450980392157 1">
 				$$18593$$Play
+				<command>clearPlayerDifficulties()</command>
 				<stateentry background="ui\core_ui\button_large_normal"/>
 				<stateentry background="ui\core_ui\button_large_clicked"/>
 				<stateentry background="ui\core_ui\button_large_high"/>
