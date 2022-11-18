@@ -49,7 +49,8 @@ customCheats
 ```
 
 7. Save.
-8. Now you can mod the UI files to use the commands provided by the plugin. Go to [this page](https://github.com/thinotmandresy/age3-individual-ai-difficulties/tree/main/data) to see some examples of modded UI.
+8. Now you can mod the UI files to use the commands provided by the plugin. Go to [this page](https://github.com/thinotmandresy/age3-individual-ai-difficulties/commit/f24c291d839efccab47d8299f0da7fab50bfdb75) to see some examples of modded UI.
+9. Also, don't forget to mod the AI files to actually read the values set at the UI. Go to [this page](https://github.com/thinotmandresy/age3-individual-ai-difficulties/commit/98f5b4ffe859c85dba5fb69b78d890c930afec64) to see what you should change.
 
 ### This looks interesting. Can we talk?
 
