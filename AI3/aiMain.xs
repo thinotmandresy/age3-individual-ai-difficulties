@@ -2998,7 +2998,7 @@ vector selectForwardBaseLocation(void)
    }
    if (siteFound == false)
       retVal = mainBaseVec;
-   if (aiGetWorldDifficulty() < cDifficultyModerate)
+   if (aiGetPlayerDifficulty() < cDifficultyModerate)
       retVal = mainBaseVec;   // Easy and Sandbox will never forward build.
    aiEcho("    New forward base location will be "+retVal);
    return(retVal);
@@ -3911,7 +3911,7 @@ minInterval 10
       
       kbBaseSetMaximumResourceDistance(cMyID, kbBaseGetMainID(cMyID), 150.0);
       
-      if (aiGetWorldDifficulty() < cDifficultyHard)
+      if (aiGetPlayerDifficulty() < cDifficultyHard)
          xsEnableRule("townWatch"); 
       
       updateEscrows();
@@ -5129,7 +5129,7 @@ void updateForecasts()
          } 
                   
          // One church
-         if ( (aiGetWorldDifficulty() < cDifficultyHard) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateABQ) < 1) )
+         if ( (aiGetPlayerDifficulty() < cDifficultyHard) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateABQ) < 1) )
             addItemToForecasts(cUnitTypeChurch, 1);   
          
          // 2 barracks
@@ -5235,7 +5235,7 @@ void updateForecasts()
          } 
                   
          // One church
-         if ( (aiGetWorldDifficulty() < cDifficultyHard) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateABQ) < 1) )
+         if ( (aiGetPlayerDifficulty() < cDifficultyHard) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateABQ) < 1) )
             addItemToForecasts(cUnitTypeChurch, 1);    
          
          // 2 barracks
@@ -6290,7 +6290,7 @@ rule popManager
 active
 minInterval 15
 {
-   float difficulty = aiGetWorldDifficulty();
+   float difficulty = aiGetPlayerDifficulty();
    int intDifficulty = difficulty;
    int cvPopLimit = 200;      // Used to calculate implied total pop limit based on civ, army and navy components.
    
@@ -6364,7 +6364,7 @@ minInterval 15
          setMilPopLimit(maxMil/8, maxMil/4, maxMil/2, maxMil, maxMil);
 			break;
 		}
-		case cDifficultyExpert: // Expert
+		default: // Expert and beyond
 		{  // Typically 70 econ, 130 mil.
          gMaxPop = 200;
          if (gMaxPop > cvPopLimit)
@@ -7197,7 +7197,7 @@ minInterval 3
    if ( (civIsNative() == false) && (civIsAsian() == false) )
    {
       planID = aiPlanGetIDByTypeAndVariableType(cPlanBuild, cBuildPlanBuildingTypeID, cUnitTypeChurch);
-      if ( (planID < 0) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateAlive) < 1) && (aiGetWorldDifficulty() >= cDifficultyHard) )
+      if ( (planID < 0) && (kbUnitCount(cMyID, cUnitTypeChurch, cUnitStateAlive) < 1) && (aiGetPlayerDifficulty() >= cDifficultyHard) )
       {     // Start a new one
          if ( (gTimeToFarm == false) || (kbUnitCount(cMyID, gFarmUnit, cUnitStateABQ) > 0) )   // We have a mill, or don't need any.
          {
@@ -8262,9 +8262,9 @@ void initPersonality(void)
          float lastDifficulty = aiPersonalityGetPlayerUserVar(playerHistoryID, "lastGameDifficulty");
          if (lastDifficulty >= 0.0)
          {
-            if (lastDifficulty > aiGetWorldDifficulty())
+            if (lastDifficulty > aiGetPlayerDifficulty())
                difficultyIsLower = true;
-            if (lastDifficulty < aiGetWorldDifficulty())
+            if (lastDifficulty < aiGetPlayerDifficulty())
                difficultyIsHigher = true;
          }
          bool iBeatHimLastTime = false;
@@ -8368,7 +8368,7 @@ void initPersonality(void)
 		}
       
       // Save info about this game
-      aiPersonalitySetPlayerUserVar(playerHistoryID, "lastGameDifficulty", aiGetWorldDifficulty());
+      aiPersonalitySetPlayerUserVar(playerHistoryID, "lastGameDifficulty", aiGetPlayerDifficulty());
       int wasAlly = 0;
       if (kbIsPlayerAlly(pid)==true)
          wasAlly = 1;
@@ -11592,7 +11592,7 @@ minInterval 10
    
    if (kbGetAge() >= cAge4)
    {
-      if ( (gDelayAttacks == true) && (aiGetWorldDifficulty() >= cDifficultyEasy) )
+      if ( (gDelayAttacks == true) && (aiGetPlayerDifficulty() >= cDifficultyEasy) )
       {
          aiEcho(" ");
          aiEcho("    OK, THE GLOVES COME OFF NOW!");
@@ -11606,7 +11606,7 @@ minInterval 10
    // See if we're under attack.
    if (gDefenseReflexBaseID == kbBaseGetMainID(cMyID))
    {  // Main base is under attack
-      if ( (gDelayAttacks == true) && (aiGetWorldDifficulty() >= cDifficultyEasy) )
+      if ( (gDelayAttacks == true) && (aiGetPlayerDifficulty() >= cDifficultyEasy) )
       {
          aiEcho(" ");
          aiEcho("    OK, THE GLOVES COME OFF NOW!");
@@ -13426,7 +13426,7 @@ void main(void)
       gSPC = false;  // RM game
 
    int intDifficulty = -1;
-   float difficulty = aiGetWorldDifficulty();
+   float difficulty = aiGetPlayerDifficulty();
    float diffRemainder = -1.0;
    intDifficulty = difficulty;
    diffRemainder = difficulty - intDifficulty;
@@ -13475,14 +13475,14 @@ void main(void)
 			kbSetPlayerHandicap( cMyID, startingHandicap * baselineHandicap * 1.0 );    // 1.0 handicap at hard, i.e. no bonus
 			break;
 		}
-		case cDifficultyExpert: // Expert
+		default: // Expert and beyond
 		{
 			kbSetPlayerHandicap( cMyID, startingHandicap * baselineHandicap * 1.5 );    // +50% boost.
 			break;
 		}
    }
    aiEcho("Handicap is "+kbGetPlayerHandicap(cMyID));
-   aiEcho("Difficulty is "+aiGetWorldDifficulty());
+   aiEcho("Difficulty is "+aiGetPlayerDifficulty());
 
    // Do some overrides for the SPC/campaign games before the loader file wakes up.
 	SPCInit();
