@@ -17,10 +17,13 @@ void setPlayerDifficulty(int player, int difficulty) {
 }
 
 int getPlayerDifficulty(int player) {
+    int(*const aiGetWorldDifficulty)() = reinterpret_cast<int(*)()>(0x725b52);
+
     if (player < 1 || player >= cMaxNumPlayers)
-        return reinterpret_cast<int(*)()>(0x725b52)(); // aiGetWorldDifficulty
+        return aiGetWorldDifficulty();
     
-    return gPlayerDifficulty[player];
+    int difficulty = gPlayerDifficulty[player];
+    return difficulty >= 0 ? difficulty : aiGetWorldDifficulty();
 }
 
 void CHEATCALL PLVL(void* playerData) {
