@@ -20,13 +20,20 @@ For now, yes. But if this plugin appears to have a certain success in the commun
 
 ### How do I install this?
 
-> ⚠️ The following files have been modified in this plugin:
+> ⚠️ **DISCLAIMER**
+> 
+> The following files have been modified in this plugin:
 > * bin\data\uimainnew.xml
 > * bin\data\uiskirmishsetup.xml
 > * bin\data\uiskirmoptionsdlg.xml
+> 
 > If you're a non-modder and you want to install this plugin on another mod, please discuss with the mod's author first.
+> 
 > If you're a modder and these files are already modified in your mod, you will have to make all the necessary adjustments yourself.
-> TODO: file diffs
+> 
+> [Click here](https://github.com/thinotmandresy/age3-individual-ai-difficulties/commit/f24c291d839efccab47d8299f0da7fab50bfdb75) to see exactly what have been changed.
+
+To install the plugin:
 
 1. Head over the [Releases section](https://github.com/thinotmandresy/age3-individual-ai-difficulties/releases).
 2. Download the version you want to install (the latest version is recommended).
